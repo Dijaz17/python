@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+</head>
+<body>
+    <h1>Hello {{session['first_name']}}.</h1>
+    <h1>Messages</h1>
+    <ul>
+        {% for message in all_messages %}
+        {% for user in all_users %}
+        {% if user.id == message.sender_id %}
+        <li>From: {{user.first_name}} {{user.last_name}}</li>
+        {% endif %}
+        {% endfor %}
+        <li>Message: {{message.message}}</li> 
+        <form action="/delete/{{message.id}}" method="POST">
+            <input type="submit" value="Delete Message">
+        </form><br>
+        {% endfor %}
+    </ul>
+    <hr>
+    <h1>Send New Message</h1>
+    <form action="/send_message" method="POST">
+        <label for="recipient">To: </label>
+        <select name="recipient">
+            {% for user in all_users %}
+            {% if user.id == session['id'] %}
+            {% else %}
+            <option value={{user.id}}>{{user.first_name}} {{user.last_name}}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <br>Message: <textarea name="message"></textarea>
+        <input type="hidden" name="sender_id" value={{current_id}}>
+        <input type="submit" value="Send">
+    </form>
+    <hr>
+    <a href="/logout">Logout</a>
+</body>
+</html>
