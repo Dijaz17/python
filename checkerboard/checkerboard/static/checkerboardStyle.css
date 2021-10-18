@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.headCont{
+    width: 325px;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+}
+.rowContainer{
+    display: flex;
+    justify-content: center;
+    height: 45px;
+}
+.box{
+    width: 45px;
+    height: 45px;
+    border: 1px solid black;
+}

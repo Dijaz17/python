@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkerboard</title>
+    <link href="{{ url_for('static', filename='checkerboardStyle.css') }}" rel="stylesheet" type="text/css">
+    <!-- internal stylesheet only used for sensei bonus -->
+    <style> 
+        .bg_color1{
+            background-color: {{color1}};
+        }
+
+        .bg_color2{
+            background-color: {{color2}};
+        }
+
+        .t_col1{
+            color: {{color1}};
+        }
+
+        .t_col2{
+            color: {{color2}};
+        }
+    </style>
+</head>
+<body>
+    <div class="headCont bg_color1 t_col2">
+        <h1>*** Checkerboard ***</h1>
+    </div>
+    {% for i in range(column) %}
+        <div class="rowContainer">
+            {% if row % 2 == 0 %}
+                {%for j in range((row/2) | int) %}
+                    {% if i % 2 == 0 %}
+                        <div class="box bg_color1"></div>
+                        <div class="box bg_color2"></div>
+                    {% else %}
+                        <div class="box bg_color2"></div>
+                        <div class="box bg_color1"></div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                {%for j in range(((row-1)/2) | int) %}
+                    {% if i % 2 == 0 %}
+                        <div class="box bg_color1"></div>
+                        <div class="box bg_color2"></div>
+                    {% else %}
+                        <div class="box bg_color2"></div>
+                        <div class="box bg_color1"></div>
+                    {% endif %}
+                {% endfor %}
+                {% if i % 2 == 0 %}
+                    <div class="box bg_color1"></div>
+                {% else %}
+                    <div class="box bg_color2"></div>
+                {% endif%}
+            {% endif %}
+        </div>
+    {% endfor %}
+</body>
+</html>
