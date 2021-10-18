@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Recipe</title>
+</head>
+<body>
+    <h1>Add New Recipe</h1>
+    <form action="/creating_recipe" method="POST">
+        Name: <input type="text" name="name"><br>
+        <label for="under_thirty">Under 30 minutes?</label>
+        <select name="under_thirty">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select><br>
+        Description<textarea name="description"></textarea><br>
+        Instructions: <textarea name="instructions"></textarea><br>
+        Date Made on: <input type="date" name="date_made">
+        <input type="hidden" name="user_id" value="{{session['id']}}">
+        <input type="submit" value="Create Recipe">
+    </form>
+    <hr>
+    <a href="/recipes">Dashboard</a> 
+    <a href="/logout">Logout</a>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit {{recipe.name}}</title>
+</head>
+<body>
+    <h1>Update {{recipe.name}}</h1>
+    <form action="/editing_recipe" method="POST">
+        <input type="hidden" name="id" value={{recipe.id}}>
+        Name: <input type="text" name="name" value={{recipe.name}}><br>
+        <label for="under_thirty">Under 30 minutes?</label>
+        <select name="under_thirty">
+            {% if recipe.under_thirty == "Yes" %}
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+            {% else %}
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+            {% endif %}
+        </select><br>
+        Description<textarea name="description">{{recipe.description}}</textarea><br>
+        Instructions: <textarea name="instructions">{{recipe.instructions}}</textarea><br>
+        Date Made on: <input type="date" name="date_made" value={{recipe.date_made}}>
+        <input type="hidden" name="user_id" value="{{session['id']}}">
+        <input type="submit" value="Update Recipe">
+    </form>
+    <hr>
+    <a href="/recipes">Dashboard</a> 
+    <a href="/logout">Logout</a>
+</body>
+</html>
